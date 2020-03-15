@@ -1,5 +1,6 @@
 ffi = require("ffi")
 raylib = require("raylib")
+raygui = require("raygui")
 
 
 function Main()
@@ -9,7 +10,7 @@ function Main()
 
     raylib.SetTargetFPS(60);
 
-    raylib.GuiEnable();
+    raygui.GuiEnable();
 
     while not raylib.WindowShouldClose() do
         raylib.BeginDrawing();
