@@ -1,6 +1,8 @@
 # LuaJIT-Raylib
 Here you can find the bindings for luajit and raylib, raygui is also included.
 
+![Loading a .OBJ model with luajit raylib](media/barn.png)
+
 # Notes
 You must compile raylib and raygui into .dlls and then reference them at the top of both raylib.lua and raygui.lua.
 
