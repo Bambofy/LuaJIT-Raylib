@@ -6,5 +6,7 @@ You must compile raylib and raygui into .dlls and then reference them at the top
 
 # Version
 LUAJIT version 2.0.5
+
 Raylib version 2.6.0
+
 Raygui version 2.6
