@@ -1331,4 +1331,102 @@ ffi.cdef([[
     void SetAudioStreamVolume(AudioStream stream, float volume);                    
     void SetAudioStreamPitch(AudioStream stream, float pitch);                         
 ]])
+
+
+PI = ffi.new("double", 3.14159265358979323846)
+DEG2RAD = ffi.new("float", PI/180.0)
+RAD2DEG = ffi.new("float", 180.0/PI)
+
+--[[
+    Module: raymath
+]]
+ffi.cdef([[
+    typedef struct float3 { float v[3]; } float3;
+    typedef struct float16 { float v[16]; } float16;
+
+    extern float Clamp(float value, float min, float max);
+    extern float Lerp(float start, float end, float amount);
+    
+    extern Vector2 Vector2Zero(void);
+    extern Vector2 Vector2One(void);
+    extern Vector2 Vector2Add(Vector2 v1, Vector2 v2);
+    extern Vector2 Vector2Subtract(Vector2 v1, Vector2 v2);
+    extern float Vector2Length(Vector2 v);
+    extern float Vector2DotProduct(Vector2 v1, Vector2 v2);
+    extern float Vector2Distance(Vector2 v1, Vector2 v2);
+    extern float Vector2Angle(Vector2 v1, Vector2 v2);
+    extern Vector2 Vector2Scale(Vector2 v, float scale);
+    extern Vector2 Vector2MultiplyV(Vector2 v1, Vector2 v2);
+    extern Vector2 Vector2Negate(Vector2 v);
+    extern Vector2 Vector2Divide(Vector2 v, float div);
+    extern Vector2 Vector2DivideV(Vector2 v1, Vector2 v2);
+    extern Vector2 Vector2Normalize(Vector2 v);
+    extern Vector2 Vector2Lerp(Vector2 v1, Vector2 v2, float amount);
+    
+    extern Vector3 Vector3Zero(void);
+    extern Vector3 Vector3One(void);
+    extern Vector3 Vector3Add(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3Subtract(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3Scale(Vector3 v, float scalar);
+    extern Vector3 Vector3Multiply(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3CrossProduct(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3Perpendicular(Vector3 v);
+    extern float Vector3Length(const Vector3 v);
+    extern float Vector3DotProduct(Vector3 v1, Vector3 v2);
+    extern float Vector3Distance(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3Negate(Vector3 v);
+    extern Vector3 Vector3Divide(Vector3 v, float div);
+    extern Vector3 Vector3DivideV(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3Normalize(Vector3 v);
+    extern void Vector3OrthoNormalize(Vector3 *v1, Vector3 *v2);
+    extern Vector3 Vector3Transform(Vector3 v, Matrix mat);
+    extern Vector3 Vector3RotateByQuaternion(Vector3 v, Quaternion q);
+    extern Vector3 Vector3Lerp(Vector3 v1, Vector3 v2, float amount);
+    extern Vector3 Vector3Reflect(Vector3 v, Vector3 normal);
+    extern Vector3 Vector3Min(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3Max(Vector3 v1, Vector3 v2);
+    extern Vector3 Vector3Barycenter(Vector3 p, Vector3 a, Vector3 b, Vector3 c);
+    extern float3 Vector3ToFloatV(Vector3 v);
+    
+    
+    extern float MatrixDeterminant(Matrix mat);
+    extern float MatrixTrace(Matrix mat);
+    extern Matrix MatrixTranspose(Matrix mat);
+    extern Matrix MatrixInvert(Matrix mat);
+    extern Matrix MatrixNormalize(Matrix mat);
+    extern Matrix MatrixIdentity(void);
+    extern Matrix MatrixAdd(Matrix left, Matrix right);
+    extern Matrix MatrixSubtract(Matrix left, Matrix right);
+    extern Matrix MatrixTranslate(float x, float y, float z);
+    extern Matrix MatrixRotate(Vector3 axis, float angle);
+    extern Matrix MatrixRotateXYZ(Vector3 ang);
+    extern Matrix MatrixRotateX(float angle);
+    extern Matrix MatrixRotateY(float angle);
+    extern Matrix MatrixRotateZ(float angle);
+    extern Matrix MatrixScale(float x, float y, float z);
+    extern Matrix MatrixMultiply(Matrix left, Matrix right);
+    extern Matrix MatrixFrustum(double left, double right, double bottom, double top, double near, double far);
+    extern Matrix MatrixPerspective(double fovy, double aspect, double near, double far);
+    extern Matrix MatrixOrtho(double left, double right, double bottom, double top, double near, double far);
+    extern Matrix MatrixLookAt(Vector3 eye, Vector3 target, Vector3 up);
+    extern float16 MatrixToFloatV(Matrix mat);
+    
+    
+    extern Quaternion QuaternionIdentity(void);
+    extern float QuaternionLength(Quaternion q);
+    extern Quaternion QuaternionNormalize(Quaternion q);
+    extern Quaternion QuaternionInvert(Quaternion q);
+    extern Quaternion QuaternionMultiply(Quaternion q1, Quaternion q2);
+    extern Quaternion QuaternionLerp(Quaternion q1, Quaternion q2, float amount);
+    extern Quaternion QuaternionNlerp(Quaternion q1, Quaternion q2, float amount);
+    extern Quaternion QuaternionSlerp(Quaternion q1, Quaternion q2, float amount);
+    extern Quaternion QuaternionFromVector3ToVector3(Vector3 from, Vector3 to);
+    extern Quaternion QuaternionFromMatrix(Matrix mat);
+    extern Matrix QuaternionToMatrix(Quaternion q);
+    extern Quaternion QuaternionFromAxisAngle(Vector3 axis, float angle);
+    extern void QuaternionToAxisAngle(Quaternion q, Vector3 *outAxis, float *outAngle);
+    extern Quaternion QuaternionFromEuler(float roll, float pitch, float yaw);
+    extern Vector3 QuaternionToEuler(Quaternion q);
+    extern Quaternion QuaternionTransform(Quaternion q, Matrix mat);
+]])
 return raylib
